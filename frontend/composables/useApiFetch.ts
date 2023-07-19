@@ -1,4 +1,4 @@
-import {UseFetchOptions} from "#app";
+import {UseFetchOptions, useRequestHeaders} from "#app";
 
 export function useApiFetch<T> (path: string, options: UseFetchOptions<T> = {}) {
     let headers: any = {}
@@ -7,6 +7,13 @@ export function useApiFetch<T> (path: string, options: UseFetchOptions<T> = {}) 
 
     if(token.value) {
         headers['X-XSRF-TOKEN'] = token.value as string
+    }
+
+    if(process.server) {
+        headers = {
+            ...headers,
+            ...useRequestHeaders(['referer', 'cookie'])
+        }
     }
 
     return useFetch("http://localhost/"+path, {
