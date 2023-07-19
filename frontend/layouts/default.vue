@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import {useAuthStore} from "~/stores/useAuthStore";
+
+const auth = useAuthStore();
 </script>
 
 <template>
   <div class="max-w-xl px-6 flex flex-col space-y-8">
-    <header class="py-4 -mx-4">
+    <header class="py-4 -mx-4 flex flex-col">
         <ol class="flex flex-row items-center">
             <li>
                 <NuxtLink active-class="bg-blue-100 text-blue-900 font-semibold"
@@ -31,6 +34,9 @@
                           href="/guest-only">Guest Only</NuxtLink>
             </li>
         </ol>
+        <div>
+            <pre>{{ auth.user }}</pre>
+        </div>
     </header>
     <slot />
   </div>
