@@ -2,6 +2,10 @@
 import {useAuthStore} from "~/stores/useAuthStore";
 
 const auth = useAuthStore();
+
+async function handleLogout() {
+    await auth.logout()
+}
 </script>
 
 <template>
@@ -34,8 +38,10 @@ const auth = useAuthStore();
                           href="/guest-only">Guest Only</NuxtLink>
             </li>
         </ol>
-        <div>
+        <div v-if="auth.isLoggedIn">
             <pre>{{ auth.user }}</pre>
+
+            <button class="text-sm font-semibold px-4 py-2 bg-red-600 text-white" @click="handleLogout">Logout</button>
         </div>
     </header>
     <slot />
