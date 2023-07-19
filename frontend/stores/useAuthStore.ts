@@ -26,7 +26,7 @@ export const useAuthStore = defineStore('auth', () => {
     const isLoggedIn = computed(() => !!user.value)
 
     async function logout() {
-        await useApiFetch("/logout", {
+        await useApiFetch("logout", {
             method: "POST"
         })
 
