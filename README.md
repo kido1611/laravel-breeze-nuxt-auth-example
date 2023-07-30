@@ -11,7 +11,8 @@
 
 ## Note
 
-This project is created based on [cdruc video](https://www.youtube.com/watch?v=NY9yoqoN72w)
+This project is created based on [cdruc video 1](https://www.youtube.com/watch?v=NY9yoqoN72w)
+[crduc video 2](https://www.youtube.com/watch?v=HLPoKz9j9KY)
 
 ## About Laravel
 

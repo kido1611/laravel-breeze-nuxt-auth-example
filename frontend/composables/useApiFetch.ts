@@ -1,7 +1,10 @@
 import {UseFetchOptions, useRequestHeaders} from "#app";
 
 export function useApiFetch<T> (path: string, options: UseFetchOptions<T> = {}) {
-    let headers: any = {}
+    let headers: any = {
+        accept: "application/json",
+        referer: "http://localhost:3000"
+    }
 
     const token = useCookie('XSRF-TOKEN')
 
@@ -12,7 +15,7 @@ export function useApiFetch<T> (path: string, options: UseFetchOptions<T> = {}) 
     if(process.server) {
         headers = {
             ...headers,
-            ...useRequestHeaders(['referer', 'cookie'])
+            ...useRequestHeaders(['cookie'])
         }
     }
 

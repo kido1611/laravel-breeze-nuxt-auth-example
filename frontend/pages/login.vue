@@ -1,5 +1,10 @@
 <script lang="ts" setup>
 import {useAuthStore} from "~/stores/useAuthStore";
+import {definePageMeta} from "#imports";
+
+definePageMeta({
+    middleware: ['guest']
+})
 
 const form = ref({
     email: "test@example.com",
@@ -9,7 +14,15 @@ const form = ref({
 const auth = useAuthStore()
 
 async function handleLogin(){
+    if(auth.isLoggedIn) {
+        return navigateTo('/')
+    }
+
     const { error } = await auth.login(form.value)
+
+    if(!error.value) {
+        return navigateTo('/')
+    }
 
     console.log(error)
 }
